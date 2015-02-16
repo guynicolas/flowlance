@@ -1,0 +1,66 @@
+<p class='text-center lead'>
+  Please enter the details of a new project:
+</p>
+<div class='main-content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-sm-6 col-sm-offset-3'>
+        <form class='form-horizontal'>
+          <div class='form-group'>
+            <label for='projectTitle' class='col-sm-2 control-label'>Title</label>
+            <div class='col-sm-10'>
+              <input type='title' class='form-control' id='projectTitle' placeholder='Project Title'>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label for='projectType' class='col-sm-2 control-label'>Type</label>
+            <div class='col-sm-10'>
+              <input type='type' class='form-control' id='projectType' placeholder= 'Project Type'>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label for='projectVolume' class='col-sm-2 control-label'>Volume</label>
+            <div class='col-sm-10'>
+              <input type='volume' class='form-control' id='projectVolume' placeholder='Project Volume'>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label for='amountDue' class='col-sm-2 control-label'>Amount Due</label>
+            <div class='col-sm-10'>
+              <input type='amount' class='form-control' id='amountDue' placeholder='Amount Due'>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label for='clientName' class='col-sm-2 control-label'>Client Name</label>
+            <div class='col-sm-10'>
+              <input type='client' class='col-sm-2 form-control' id='clientName' placeholder='Client Name'>
+            </div>
+          </div>
+            <div class="form-group">
+              <label for='datetimepicker11' class='col-sm-2 control-label'>Due Date</label>
+              <div class='col-sm-10'>
+                <div class='input-group date'>
+                  <input type='text' class="form-control" id='datetimepicker11'>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                  </div>
+                </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker11').datetimepicker({
+                        daysOfWeekDisabled: [0,6]
+                    });
+                });
+            </script>
+          <div class='col-md-offset-2'>
+            <div class='form-group'>
+              <div class='col-sm-offeset-2 col-sm-10'>
+                <button type='submit' class='btn btn-primary'>Save Project</button>
+              </div>
+            </div>
+          </div> 
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

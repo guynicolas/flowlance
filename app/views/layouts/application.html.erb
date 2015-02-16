@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flowlance | Project Manager for Freelancers</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'countdown', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <%= render 'shared/header' %>
+  </header>
+  <%= yield %>
+  <footer>
+    <%= render 'shared/footer' %>
+  </footer> 
+</body>
+</html>

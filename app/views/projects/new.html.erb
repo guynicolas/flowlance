@@ -1,0 +1,51 @@
+<p class='text-center lead'>
+  Please enter the details of a new project:
+</p>
+<div class='main-content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-sm-6 col-sm-offset-3'>
+        <%= form_for @project do |f| %> 
+          <%= render 'shared/errors', obj: @project %> 
+          <div class='form-group'>
+            <%= f.label :title, nil,  class: "col-sm-2 control-label" %> 
+            <div class='col-sm-10'>
+              <%= f.text_field :title, class: "form-control", placeholder: "Project Title" %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= f.label :description, nil, class: "col-sm-2 control-label" %> 
+            <div class='col-sm-10'>
+              <%= f.text_field :description, class: "form-control", placeholder: "Project Description" %> 
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= f.label :volume, nil, class: "col-sm-2 control-label" %> 
+            <div class='col-sm-10'>
+              <%= f.text_field :volume, class: "form-control", placeholder: "Project Volume" %> 
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= f.label :amount_due, nil, class: "col-sm-2 control-label" %> 
+            <div class='col-sm-10'>
+              <%= f.text_field :amount_due, class: "form-control", placeholder: "Amount Due" %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= f.label :client_name, nil, class: "col-sm-2 control-label" %> 
+            <div class='col-sm-10'>
+              <%= f.text_field :client_name, class: "form-control", placeholder: "Client Name" %> 
+            </div>
+          </div>
+          <div class='col-md-offset-2'>
+            <div class='form-group'>
+              <div class='col-sm-offeset-2 col-sm-10'>
+                <%= f.submit "Save Project", class: "btn btn-primary" %> 
+              </div>
+            </div>
+          </div> 
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
