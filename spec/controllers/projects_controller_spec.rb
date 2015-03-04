@@ -30,8 +30,11 @@ describe ProjectsController do
       before do 
       andy = User.create(name: "Andy Carson", email: "andy@example.com", password: "password")
       session[:user_id] = andy.id
-        post :create, project: {title: "Annual Report", description: "Translation", volume: "5000", amount_due: "400", client_name: "Anderson & Co. Ltd" }
+      post :create, project: {title: "Annual Report", description: "Translation", volume: "5000", amount_due: "400", client_name: "Anderson & Co. Ltd", status: "On Going" }
       end 
+      after do 
+        Usermailer.deliveries.clear
+      end   
       it "redirects to the home page" do 
         expect(response).to redirect_to home_path
       end 
@@ -40,13 +43,20 @@ describe ProjectsController do
       end 
       it "sets a success message" do 
         expect(flash[:success]).not_to be_blank
+      end
+      it "sets the status to 'On Going'" do 
+        project = Project.create(title: "Annual Report", description: "Translation", volume: "5000", amount_due: "400", client_name: "Anderson & Co. Ltd", status: "On Going")
+        expect(project.status).to eq("On Going")
       end 
+      it "sends a notification email" do 
+        expect(ActionMailer::Base.deliveries.last.to).to eq(["andy@example.com"])
+      end  
     end 
     context "with invalid inputs" do 
       before do 
       andy = User.create(name: "Andy Carson", email: "andy@example.com", password: "password")
       session[:user_id] = andy.id
-        post :create, project: {title: "Annual Report", description: "Translation" } 
+      post :create, project: {title: "Annual Report", description: "Translation" } 
       end 
       it "renders the new template" do 
         expect(response).to render_template :new
@@ -57,6 +67,30 @@ describe ProjectsController do
       it "sets an error message" do 
         expect(flash[:danger]).not_to be_blank
       end 
+    end 
+  end 
+
+  describe "PATCH complete" do 
+    it "redirects to the home page" do 
+      andy = User.create(name: "Andy Carson", email: "andy@example.com", password: "password")
+      session[:user_id] = andy.id
+      project = Project.create(title: "Annual Report", description: "Translation", volume: "5000", amount_due: "400", client_name: "Anderson & Co. Ltd")
+      patch :complete, id: project.id
+      expect(response).to redirect_to home_path   
+    end 
+    it "marks project as completed" do 
+      andy = User.create(name: "Andy Carson", email: "andy@example.com", password: "password")
+      session[:user_id] = andy.id
+      project = Project.create(title: "Annual Report", description: "Translation", volume: "5000", amount_due: "400", client_name: "Anderson & Co. Ltd")
+      patch :complete, id: project.id
+      expect(project.reload.status).to eq("Completed")
+    end 
+    it "sends a notification email" do 
+      andy = User.create(name: "Andy Carson", email: "andy@example.com", password: "password")
+      session[:user_id] = andy.id
+      project = Project.create(title: "Annual Report", description: "Translation", volume: "5000", amount_due: "400", client_name: "Anderson & Co. Ltd")
+      patch :complete, id: project.id
+      expect(ActionMailer::Base.deliveries.last.to).to eq(["andy@example.com"])
     end 
   end 
 end 

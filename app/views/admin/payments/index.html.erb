@@ -1,0 +1,32 @@
+<p class='text-center lead'>
+  All payments are listed here:
+</p>
+
+<div class='main-content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='well'>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>User's Full Name</th>
+              <th>User's Email</th>
+              <th>Amount Paid</th>
+              <th>Reference Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @payments.each do |payment| %> 
+            <tr>
+              <td><%= payment.user.name %></td>
+              <td><%= payment.user.email %></td>
+              <td><%= number_to_currency(payment.amount / 100.0) %></td>
+              <td><%= payment.reference_id %></td>
+            </tr>
+            <% end %> 
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> 
+</div> 

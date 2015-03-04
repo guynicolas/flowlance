@@ -14,7 +14,7 @@
               <th>Volume</th>
               <th>Amount Due</th>
               <th>Client Name</th>
-              <th>Due Date</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -25,13 +25,13 @@
               <td><%= project.volume %></td>
               <td>USD <%= project.amount_due %></td>
               <td><%= project.client_name %></td>
-              <td>01/03/2015 10:00 AM</td>
+              <td><%= link_to project.status, complete_project_path(project), method: :patch, class: (project.status == "On Going" ? "btn btn-warning" : "btn btn-success") %></td>
             </tr>
             <% end %> 
           </tbody>
         </table>
       </div>
     </div>
-    <p class='lead text-center'>Record a new project: <%= link_to "New Project", new_project_path, class: 'btn btn-primary btn-lg' %></p>
+    <p class='lead text-center'>Record a new project: <%= link_to "New Project", new_project_path, class: 'btn btn-primary' %></p>
   </div>
 </div> 

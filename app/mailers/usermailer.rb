@@ -4,4 +4,16 @@ class Usermailer < ActionMailer::Base
     @user = user 
     mail(to: @user.email, subject: "Welcome to Flowlance!" )
   end
+
+  def send_email_on_new_project(user, project)
+    @user = user
+    @project = project
+    mail(to: @user.email, subject: "You have successfully created a new project.")
+  end
+
+  def send_email_on_completed_project(user, project)
+    @user = user
+    @project = project
+    mail(to: @user.email, subject: "You have successfully completed a project.")
+  end
 end 

@@ -8,5 +8,13 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create]
   get 'ui(/:action)', controller: 'ui'
 
-  resources :projects, only: [:index, :new, :create]
+  resources :projects, only: [:index, :new, :create] do 
+    member do 
+      patch :complete
+    end 
+  end 
+  namespace :admin do 
+    resources :payments, only: [:index]
+  end 
+  mount StripeEvent::Engine, at: '/stripe_events'
 end
