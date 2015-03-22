@@ -5,9 +5,6 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'autoprefixer-rails'
 gem 'bcrypt', '~> 3.1.7'
-gem 'figaro'
-gem 'stripe'
-gem "stripe_event"
 
 group :assets do 
   gem 'sass-rails', '~> 5.0'
@@ -36,8 +33,6 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'capybara-email'
-  gem 'vcr'
-  gem 'webmock'
   gem 'selenium-webdriver'
   gem 'capybara-webkit'
 end

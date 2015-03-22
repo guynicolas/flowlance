@@ -13,8 +13,4 @@ Rails.application.routes.draw do
       patch :complete
     end 
   end 
-  namespace :admin do 
-    resources :payments, only: [:index]
-  end 
-  mount StripeEvent::Engine, at: '/stripe_events'
 end

@@ -9,9 +9,7 @@ describe UsersController do
     end 
   end 
   describe "POST create" do 
-    context 'with valid personal info and card details' do 
-      let(:charge) { double(:charge, successful?: true, charge_token: "asdf")}
-      before { StripeWrapper::Charge.should_receive(:create).and_return(charge) }
+    context 'with valid personal info' do 
       after { ActionMailer::Base.deliveries.clear }
       it "redirects to the sign in page" do
         post :create, user: {name: "Andy Carson", email: "andy@example.com", password: "password"}, stripeToken: '12345'
@@ -26,29 +24,6 @@ describe UsersController do
         expect(ActionMailer::Base.deliveries.last.to).to eq(["andy@example.com"])
       end 
     end 
-
-    context "with valid personal info and declined card" do 
-      let(:charge) {double(:charge, successful?: false, error_message: "Your card was declined.")}
-      before { StripeWrapper::Charge.should_receive(:create).and_return(charge) }
-      after { ActionMailer::Base.deliveries.clear }
-      it "renders the new template" do 
-        post :create, user: {name: "Andy Carson", email: "andy@example.com", password: "password"}, stripeToken: '12345'
-        expect(response).to render_template :new
-      end 
-      it "does not create a new user" do 
-        post :create, user: {name: "Andy Carson", email: "andy@example.com", password: "password"}, stripeToken: '12345'
-        expect(User.count).to eq(0)
-      end
-      it "sets an error message" do 
-        post :create, user: {name: "Andy Carson", email: "andy@example.com", password: "password"}, stripeToken: '12345'
-        expect(flash[:danger]).to be_present
-      end 
-      it "does not send any welcome email" do 
-        post :create, user: {name: "Andy Carson", email: "andy@example.com", password: "password"}, stripeToken: '12345'
-        expect(ActionMailer::Base.deliveries).to be_empty
-      end 
-    end 
-
     context 'with invalid personal info' do 
       it "it renders to new template" do 
         post :create, user: {email: "andy@example.com", password: "password"}  
@@ -59,7 +34,6 @@ describe UsersController do
         expect(flash[:danger]).to be_present
       end 
       it "does not charge the card" do 
-        StripeWrapper::Charge.should_not_receive(:create)
         post :create, user: {email: "andy@example.com", password: "password"}   
       end 
     end 

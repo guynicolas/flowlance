@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       flash[:danger] = "Your email and password don't match."
     end 
   end
-
+  
   def destroy
     session[:user_id] = nil
     flash[:success] = "You are logged out."
