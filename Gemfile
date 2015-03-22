@@ -5,7 +5,7 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'autoprefixer-rails'
 gem 'bcrypt', '~> 3.1.7'
-#gem 'figaro'
+gem 'figaro'
 gem 'stripe'
 gem "stripe_event"
 
