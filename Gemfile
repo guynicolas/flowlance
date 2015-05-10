@@ -5,6 +5,7 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'autoprefixer-rails'
 gem 'bcrypt', '~> 3.1.7'
+gem "pry"
 
 group :assets do 
   gem 'sass-rails', '~> 5.0'
@@ -24,7 +25,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
-  gem 'spring'
+  gem 'spring', "1.3.5"
 end
 
 group :test do
