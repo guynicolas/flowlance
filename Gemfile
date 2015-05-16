@@ -35,6 +35,6 @@ group :test do
   gem 'launchy'
   gem 'capybara-email'
   gem 'selenium-webdriver'
-  gem 'capybara-webkit'
+  #gem 'capybara-webkit'
 end
 gem 'jquery-rails'
