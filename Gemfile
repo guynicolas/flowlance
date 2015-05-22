@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 gem 'rails', '4.2.0'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
@@ -35,6 +37,7 @@ group :test do
   gem 'launchy'
   gem 'capybara-email'
   gem 'selenium-webdriver'
-  #gem 'capybara-webkit'
 end
 gem 'jquery-rails'
+gem 'rails_12factor'
+
